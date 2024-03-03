@@ -3,6 +3,8 @@ const markRead = document.getElementById("mark-read");
 const readCount = document.getElementById("read-count").innerText;
 // console.log(readCount);
 let markAsRead = parseInt(readCount);
+const latestPost = document.getElementById("latest-post");
+const searchBox = document.getElementById("search-box");
 
 const loadAllPosts = async () => {
   const res = await fetch(
@@ -77,16 +79,39 @@ const messageButton = (title, view) => {
   document.getElementById("read-count").innerHTML = markAsRead;
 };
 
-// const loadLatestPosts = async () => {
-//   const res = await fetch(
-//     "https://openapi.programming-hero.com/api/retro-forum/latest-posts"
-//   );
-//   const data = await res.json();
-//   console.log(data[0].author.name);
-//   data.posts.forEach((post) => {
-//     // console.log(post);
-//   });
-// };
+const loadLatestPosts = async () => {
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/retro-forum/latest-posts"
+  );
+  const data = await res.json();
+  console.log(data[0].author.name);
+  data.forEach((post) => {
+    // console.log(post.cover_image);
+    const div = document.createElement("div");
+    div.innerHTML = `
+    <div class="border border-solid border-opacity-15 p-4 rounded-2xl">
+            <img src=${post.cover_image} alt="">
+            <p class="mulish my-2">
+              <i class="fa-regular fa-calendar"></i>${post.author.posted_date}
+            </p>
+            <h4 class="mulish font-extrabold">
+              ${post.title}
+            </h4>
+            <p class="mulish my-2">
+              ${post.description}
+            </p>
+            <div class="flex gap-3">
+              <img src=${post.profile_image} class="h-10 w-10 rounded-full">
+              <div>
+                <h4 class="mulish font-extrabold">${post.author.name}</h4>
+                <p class="mulish">${post.author.designation}</p>
+              </div>
+            </div>
+          </div>
+    `;
+    latestPost.appendChild(div);
+  });
+};
 
 loadAllPosts();
-// loadLatestPosts();
+loadLatestPosts();
