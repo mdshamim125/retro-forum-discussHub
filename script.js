@@ -4,7 +4,8 @@ const readCount = document.getElementById("read-count").innerText;
 // console.log(readCount);
 let markAsRead = parseInt(readCount);
 const latestPost = document.getElementById("latest-post");
-const searchBox = document.getElementById("search-box");
+const searchButton = document.getElementById("search-btn");
+const loadingSpinner = document.getElementById("loading-spinner");
 
 const loadAllPosts = async () => {
   const res = await fetch(
@@ -56,6 +57,15 @@ const loadAllPosts = async () => {
     `;
 
     allCategories.appendChild(div);
+
+    searchButton.addEventListener("click", () => {
+      allCategories.innerHTML = "";
+      loadingSpinner.classList.remove("hidden");
+      const searchBoxValue = document.getElementById("search-box").value;
+      setTimeout(() => {
+        hideLoadingSpinner(post.category, searchBoxValue);
+      }, 2000);
+    });
   });
 };
 
@@ -84,7 +94,7 @@ const loadLatestPosts = async () => {
     "https://openapi.programming-hero.com/api/retro-forum/latest-posts"
   );
   const data = await res.json();
-  console.log(data[0].author.name);
+  // console.log(data[0].author.name);
   data.forEach((post) => {
     // console.log(post.cover_image);
     const div = document.createElement("div");
@@ -112,6 +122,68 @@ const loadLatestPosts = async () => {
     latestPost.appendChild(div);
   });
 };
+
+const loadByCategories = async (category, value) => {
+  // console.log(value);
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/retro-forum/posts?category=${category}`
+  );
+  const data = await res.json();
+  // console.log(data.posts[0]);
+  data.posts.forEach((post) => {
+    if (category.toLowerCase() === value.toLowerCase()) {
+      // console.log(post);
+      const div = document.createElement("div");
+      div.innerHTML = `
+    <div class="bg-[#7D7DFC1A] flex gap-4 rounded-3xl p-6 mb-4">
+              <div class="indicator">
+                <span class="indicator-item badge badge-secondary"></span>
+                <img src=${post.image} class="h-[75px] rounded-xl"> 
+              </div>
+              <div>
+                <p class="inter font-medium">
+                  # ${post.category} <span class="ml-4">Author: ${post.author.name}</span>
+                </p>
+                <h3 class="mulish font-bold text-xl my-2">
+                  ${post.title}
+                </h3>
+                <p class="border-b border-dotted inter">
+                  ${post.description}
+                </p>
+                <div class="flex justify-between">
+                  <div class="flex gap-6">
+                    <div class="flex gap-2 items-center">
+                      <i class="fa-regular fa-message"></i>
+                      <p>${post.comment_count}</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <i class="fa-regular fa-eye"></i>
+                      <p>${post.view_count}</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <i class="fa-regular fa-clock"></i>
+                      <p>${post.posted_time} min</p>
+                    </div>
+                  </div>
+                  <div class="text-white">
+                    <button onclick="messageButton('${post.title}', '${post.view_count}')" class="bg-[#10B981] p-1 rounded-full px-2">
+                      <i class="fa-regular fa-envelope"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+    `;
+      loadingSpinner.classList.add("hidden");
+      allCategories.appendChild(div);
+    }
+  });
+};
+
+function hideLoadingSpinner(category, searchBoxValue) {
+  loadingSpinner.classList.add("hidden");
+  loadByCategories(category, searchBoxValue);
+}
 
 loadAllPosts();
 loadLatestPosts();

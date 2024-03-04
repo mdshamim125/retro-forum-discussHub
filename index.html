@@ -161,17 +161,18 @@
                     Forum
                   </h1>
                 </div>
-                <form action="" class="lg:mt-[100px]">
+                <div class="lg:mt-[100px]">
                   <input
                     type="text"
                     placeholder=""
                     class="p-4 rounded-3xl w-[350px]"
                     id="search-box"
                   />
-                  <button class="my-10 btn bg-primary rounded-3xl -ml-[120px]">
+                  <button id="search-btn" class="btn my-10 bg-primary rounded-3xl -ml-[120px]">
                     search here
                   </button>
-                </form>
+                  
+                </div>
               </div>
               <div
                 class="bg-white ml-10 h-[150px] lg:h-[200px] w-[300px] rounded-3xl lg:mt-[150px] mulish text-2xl font-medium p-4"
@@ -209,6 +210,9 @@
           Yes, you can run unit tests and view the results directly within the
           app. The integrated testing features allow for a streamlined .
         </p>
+        <div class="text-center">
+          <span class="loading loading-bars loading-lg hidden" id="loading-spinner"></span>
+        </div>
         <div class="lg:grid grid-cols-12 gap-6">
           <div class="p-6 col-span-8" id="all-categories"></div>
           <div class="col-span-4 rounded-3xl">
