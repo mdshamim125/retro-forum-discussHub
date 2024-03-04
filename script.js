@@ -16,7 +16,7 @@ const loadAllPosts = async () => {
     // console.log(post.category);
     const div = document.createElement("div");
     div.innerHTML = `
-    <div class="bg-[#7D7DFC1A] flex gap-4 rounded-3xl p-6 mb-4">
+    <div class="bg-[#7D7DFC1A] flex gap-4 rounded-3xl p-6 mb-6">
               <div class="indicator">
                 
                 <img src=${post.image} class="h-[75px] rounded-xl"> 
@@ -106,7 +106,7 @@ const loadLatestPosts = async () => {
     // console.log(post.cover_image);
     const div = document.createElement("div");
     div.innerHTML = `
-    <div class="border border-solid border-opacity-15 p-4 rounded-2xl">
+    <div class="border border-solid border-opacity-15 p-4 rounded-2xl mb-6">
             <img src=${post.cover_image} alt="">
             <p class="mulish my-2">
               <i class="fa-regular fa-calendar"></i> ${
