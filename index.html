@@ -36,7 +36,7 @@
           extend: {
             colors: {
               clifford: "#da373d",
-              primary: "#7D7DFC",
+              primary: "#7D7DFC",              
             },
           },
         },
@@ -168,10 +168,12 @@
                     class="p-4 rounded-3xl w-[350px]"
                     id="search-box"
                   />
-                  <button id="search-btn" class="btn my-10 bg-primary rounded-3xl -ml-[120px]">
+                  <button
+                    id="search-btn"
+                    class="btn my-10 bg-primary rounded-3xl -ml-[120px]"
+                  >
                     search here
                   </button>
-                  
                 </div>
               </div>
               <div
@@ -211,7 +213,10 @@
           app. The integrated testing features allow for a streamlined .
         </p>
         <div class="text-center">
-          <span class="loading loading-bars loading-lg hidden" id="loading-spinner"></span>
+          <span
+            class="loading loading-bars loading-lg hidden"
+            id="loading-spinner"
+          ></span>
         </div>
         <div class="lg:grid grid-cols-12 gap-6">
           <div class="p-6 col-span-8" id="all-categories"></div>
@@ -254,9 +259,7 @@
           Yes, you can run unit tests and view the results directly within the
           app. The integrated testing features allow for a streamlined .
         </p>
-        <div class="lg:grid grid-cols-3 gap-6" id="latest-post">
-          
-        </div>
+        <div class="lg:grid grid-cols-3 gap-6" id="latest-post"></div>
       </section>
     </main>
 

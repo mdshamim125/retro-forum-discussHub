@@ -18,8 +18,9 @@ const loadAllPosts = async () => {
     div.innerHTML = `
     <div class="bg-[#7D7DFC1A] flex gap-4 rounded-3xl p-6 mb-4">
               <div class="indicator">
-                <span class="indicator-item badge badge-secondary"></span>
+                
                 <img src=${post.image} class="h-[75px] rounded-xl"> 
+                <span class="indicator-item badge ${post.isActive?"bg-green-500": "bg-red-500"}"></span>
               </div>
               <div>
                 <p class="inter font-medium">
@@ -139,7 +140,7 @@ const loadByCategories = async (category, value) => {
       div.innerHTML = `
     <div class="bg-[#7D7DFC1A] flex gap-4 rounded-3xl p-6 mb-4">
               <div class="indicator">
-                <span class="indicator-item badge badge-secondary"></span>
+                <span class="indicator-item badge ${post.isActive?"bg-green-500":"bg-red-500"}"></span>
                 <img src=${post.image} class="h-[75px] rounded-xl"> 
               </div>
               <div>
