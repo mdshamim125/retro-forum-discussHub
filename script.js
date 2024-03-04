@@ -20,11 +20,15 @@ const loadAllPosts = async () => {
               <div class="indicator">
                 
                 <img src=${post.image} class="h-[75px] rounded-xl"> 
-                <span class="indicator-item badge ${post.isActive?"bg-green-500": "bg-red-500"}"></span>
+                <span class="indicator-item badge ${
+                  post.isActive ? "bg-green-500" : "bg-red-500"
+                }"></span>
               </div>
               <div>
                 <p class="inter font-medium">
-                  # ${post.category} <span class="ml-4">Author: ${post.author.name}</span>
+                  # ${post.category} <span class="ml-4">Author: ${
+      post.author.name
+    }</span>
                 </p>
                 <h3 class="mulish font-bold text-xl my-2">
                   ${post.title}
@@ -48,7 +52,9 @@ const loadAllPosts = async () => {
                     </div>
                   </div>
                   <div class="text-white">
-                    <button onclick="messageButton('${post.title}', '${post.view_count}')" class="bg-[#10B981] p-1 rounded-full px-2">
+                    <button onclick="messageButton('${post.title}', '${
+      post.view_count
+    }')" class="bg-[#10B981] p-1 rounded-full px-2">
                       <i class="fa-regular fa-envelope"></i>
                     </button>
                   </div>
@@ -128,6 +134,7 @@ const loadLatestPosts = async () => {
 
 const loadByCategories = async (category, value) => {
   // console.log(value);
+  allCategories.innerHTML = "";
   const res = await fetch(
     `https://openapi.programming-hero.com/api/retro-forum/posts?category=${category}`
   );
@@ -140,12 +147,16 @@ const loadByCategories = async (category, value) => {
       div.innerHTML = `
     <div class="bg-[#7D7DFC1A] flex gap-4 rounded-3xl p-6 mb-4">
               <div class="indicator">
-                <span class="indicator-item badge ${post.isActive?"bg-green-500":"bg-red-500"}"></span>
+                <span class="indicator-item badge ${
+                  post.isActive ? "bg-green-500" : "bg-red-500"
+                }"></span>
                 <img src=${post.image} class="h-[75px] rounded-xl"> 
               </div>
               <div>
                 <p class="inter font-medium">
-                  # ${post.category} <span class="ml-4">Author: ${post.author.name}</span>
+                  # ${post.category} <span class="ml-4">Author: ${
+        post.author.name
+      }</span>
                 </p>
                 <h3 class="mulish font-bold text-xl my-2">
                   ${post.title}
@@ -169,7 +180,9 @@ const loadByCategories = async (category, value) => {
                     </div>
                   </div>
                   <div class="text-white">
-                    <button onclick="messageButton('${post.title}', '${post.view_count}')" class="bg-[#10B981] p-1 rounded-full px-2">
+                    <button onclick="messageButton('${post.title}', '${
+        post.view_count
+      }')" class="bg-[#10B981] p-1 rounded-full px-2">
                       <i class="fa-regular fa-envelope"></i>
                     </button>
                   </div>
