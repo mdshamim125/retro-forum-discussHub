@@ -102,7 +102,9 @@ const loadLatestPosts = async () => {
     <div class="border border-solid border-opacity-15 p-4 rounded-2xl">
             <img src=${post.cover_image} alt="">
             <p class="mulish my-2">
-              <i class="fa-regular fa-calendar"></i>${post.author.posted_date}
+              <i class="fa-regular fa-calendar"></i> ${
+                post.author?.posted_date || "No Publish Date"
+              }
             </p>
             <h4 class="mulish font-extrabold">
               ${post.title}
@@ -114,7 +116,7 @@ const loadLatestPosts = async () => {
               <img src=${post.profile_image} class="h-10 w-10 rounded-full">
               <div>
                 <h4 class="mulish font-extrabold">${post.author.name}</h4>
-                <p class="mulish">${post.author.designation}</p>
+                <p class="mulish">${post.author?.designation || "Unknown"}</p>
               </div>
             </div>
           </div>
